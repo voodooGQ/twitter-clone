@@ -1,10 +1,12 @@
 # frozen_string_literal: true
+require "dotenv"
+Dotenv.load
 
 #Conditionally enable simplecov
 if ENV["COVERAGE"] || ENV["COV"]
   require "simplecov"
   SimpleCov.start "rails" do
-    coverage_dir "tmp/coverage"
+    coverage_dir "coverage"
 
     add_filter "/spec/"
     add_filter "/config/"
@@ -37,6 +39,8 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = true
 
+  config.include AuthHelper, type: :controller
+
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 
@@ -50,4 +54,11 @@ RSpec.configure do |config|
 
   # include FactoryGirl
   config.include FactoryGirl::Syntax::Methods
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

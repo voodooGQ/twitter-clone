@@ -13,7 +13,7 @@ gem "sass-rails", "~> 5.0"
 gem "sqlite3", "~> 1.3.13"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
-gem "dotenv-rails", "~> 2.1.1"
+gem "dotenv-rails", "~> 2.2.1"
 gem "jquery-rails", "~> 4.3.1"
 
 group :development, :test do
@@ -30,7 +30,10 @@ group :development, :test do
   # We only want this to be automatically required for tests, so we've moved
   # that into rails_helper
   gem "factory_girl_rails", "~> 4.8.0", require: false
+  gem "faker", "~> 1.8.4"
+  gem "shoulda-matchers", "~> 3.1"
   gem "database_cleaner", "~> 1.6.1"
+  gem "rails-controller-testing", "~> 1.0.2"
 end
 
 group :development do
