@@ -1,10 +1,12 @@
 # frozen_string_literal: true
+require "dotenv"
+Dotenv.load
 
 #Conditionally enable simplecov
 if ENV["COVERAGE"] || ENV["COV"]
   require "simplecov"
   SimpleCov.start "rails" do
-    coverage_dir "tmp/coverage"
+    coverage_dir "coverage"
 
     add_filter "/spec/"
     add_filter "/config/"

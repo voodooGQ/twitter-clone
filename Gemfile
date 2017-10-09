@@ -13,7 +13,7 @@ gem "sass-rails", "~> 5.0"
 gem "sqlite3", "~> 1.3.13"
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
-gem "dotenv-rails", "~> 2.1.1"
+gem "dotenv-rails", "~> 2.2.1"
 gem "jquery-rails", "~> 4.3.1"
 
 group :development, :test do
