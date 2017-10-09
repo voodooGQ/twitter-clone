@@ -30,6 +30,8 @@ group :development, :test do
   # We only want this to be automatically required for tests, so we've moved
   # that into rails_helper
   gem "factory_girl_rails", "~> 4.8.0", require: false
+  gem "faker", "~> 1.8.4"
+  gem "shoulda-matchers", "~> 3.1"
   gem "database_cleaner", "~> 1.6.1"
 end
 
