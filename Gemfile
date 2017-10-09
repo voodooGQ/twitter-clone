@@ -33,6 +33,7 @@ group :development, :test do
   gem "faker", "~> 1.8.4"
   gem "shoulda-matchers", "~> 3.1"
   gem "database_cleaner", "~> 1.6.1"
+  gem "rails-controller-testing", "~> 1.0.2"
 end
 
 group :development do
