@@ -32,8 +32,6 @@ RSpec.describe UsersController, type: :controller do
         expect(@user.chirps.count).to eq(3)
       end
     end
-
-
   end
 
   describe "POST #create" do
