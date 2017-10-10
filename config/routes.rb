@@ -1,9 +1,6 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  get 'chirps/new'
-
-  get 'chirps/create'
-
-  get 'chirps/update'
-
   root "static_pages#home"
+  resources "chirps"
 end
