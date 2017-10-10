@@ -48,6 +48,12 @@ RSpec.describe UsersController, type: :controller do
       it "redirects the user to the root_url" do
         expect(response).to redirect_to(root_url)
       end
+
+      it "sends a 'Thank you for signing up!' flash notice" do
+        expect(controller).to set_flash[:notice].to(
+          "Thank you for signing up!"
+        )
+      end
     end
   end
 end
