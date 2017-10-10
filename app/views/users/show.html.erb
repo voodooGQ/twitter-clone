@@ -1,0 +1,11 @@
+<h1>Profile</h1>
+
+<% if @chirps.any? %>
+    <ul class="chirps">
+        <% @chirps.each do |chirp| %>
+            <li><%= chirp.message %></li>
+        <% end %>
+    </ul>
+<% else %>
+    <p><%= @user.email %> has no chirps to display</p>
+<% end %>

@@ -50,4 +50,15 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe "chirps" do
+    before do
+      @user = create(:user)
+      3.times { create(:chirp, user: @user) }
+    end
+
+    it "properly associates chirps with a user" do
+      expect(@user.chirps.count).to eq(3)
+    end
+  end
 end
