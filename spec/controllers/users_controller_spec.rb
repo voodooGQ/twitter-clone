@@ -13,6 +13,29 @@ RSpec.describe UsersController, type: :controller do
     end
   end
 
+  describe "GET #show" do
+    before do
+      @user = create(:user)
+      3.times { create(:chirp, user: @user) }
+
+      get :show, params: {id: @user.id}
+    end
+
+    describe "@user" do
+      it "returns the correct user based on the id passed" do
+        expect(controller.instance_variable_get(:@user)).to eq(@user)
+      end
+    end
+
+    describe "@chirps" do
+      it "returns all the user's chirps" do
+        expect(@user.chirps.count).to eq(3)
+      end
+    end
+
+
+  end
+
   describe "POST #create" do
     context "when invalid parameters are passed" do
       context "when the user parameter is empty" do

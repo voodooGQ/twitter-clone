@@ -1,5 +1,6 @@
 class ChirpsController < ApplicationController
   def index
+    authorize
     @chirps = Chirp.all
   end
 

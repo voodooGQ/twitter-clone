@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # No point showing empty chirps
+    @chirps = @user.chirps
   end
 
   def create
