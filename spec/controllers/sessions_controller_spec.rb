@@ -24,8 +24,8 @@ RSpec.describe SessionsController, type: :controller do
         expect(session[:user_id]).to eq(@user.id)
       end
 
-      it "redirects the user to the root_url" do
-        expect(response).to redirect_to(root_url)
+      it "redirects the user to the feed_url" do
+        expect(response).to redirect_to(feed_url)
       end
 
       it "sends a 'Logged in!' flash notice" do

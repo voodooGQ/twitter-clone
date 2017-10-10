@@ -45,8 +45,8 @@ RSpec.describe UsersController, type: :controller do
         expect(session[:user_id]).to eq(User.last.id)
       end
 
-      it "redirects the user to the root_url" do
-        expect(response).to redirect_to(root_url)
+      it "redirects the user to the feed_url" do
+        expect(response).to redirect_to(feed_url)
       end
 
       it "sends a 'Thank you for signing up!' flash notice" do
