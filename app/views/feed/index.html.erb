@@ -1,1 +1,13 @@
-<h1>FEED</h1>
+<h1>Feed</h1>
+
+<% if @feed %>
+    <% @feed.each do |chirp| %>
+        <p><%= chirp.message %></p>
+    <% end %>
+<% else %>
+    <% if current_user.followed_users.count.positive? %>
+        <p>It looks like none of the people you've followed have chirped!</p>
+    <% else %>
+        <p>You need to go follow some people!</p>
+    <% end %>
+<% end %>

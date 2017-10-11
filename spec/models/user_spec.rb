@@ -85,7 +85,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "followed_user_chirps" do
+  describe "chirp_feed" do
     before do
       3.times do |i|
         instance_variable_set("@user_#{i+1}", create(:user))
@@ -96,12 +96,14 @@ RSpec.describe User, type: :model do
         create(:chirp, user: @user_3)
       end
 
+      create(:chirp, user: @user_1)
+
       create(:user_relationship, user: @user_1, followed_user: @user_2)
       create(:user_relationship, user: @user_1, followed_user: @user_3)
     end
 
     it "returns the correct number of chirps" do
-      expect(@user_1.followed_user_chirps.count).to eq(6)
+      expect(@user_1.chirp_feed.count).to eq(7)
     end
   end
 end
