@@ -1,6 +1,6 @@
 <h1>Feed</h1>
 
-<% if @feed %>
+<% if @feed.any? %>
     <% @feed.each do |chirp| %>
         <p><%= chirp.message %></p>
     <% end %>
