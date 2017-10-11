@@ -61,4 +61,27 @@ RSpec.describe User, type: :model do
       expect(@user.chirps.count).to eq(3)
     end
   end
+
+  describe "follows" do
+    before do
+      @user_1 = create(:user)
+      @user_2 = create(:user)
+
+      @relationship = create(
+        :user_relationship,
+        user: @user_1,
+        followed_user: @user_2
+      )
+    end
+
+    it "returns the proper number of 'followed_users'" do
+      expect(@user_1.followed_users.count).to eq(1)
+      expect(@user_2.followed_users.count).to eq(0)
+    end
+
+    it "returns the proper number of 'followers'" do
+      expect(@user_1.followers.count).to eq(0)
+      expect(@user_2.followers.count).to eq(1)
+    end
+  end
 end
