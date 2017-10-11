@@ -46,4 +46,12 @@ class User < ApplicationRecord
   )
 
   before_save { self.email = email.downcase }
+
+  def followed_user_chirps
+    followed_ids = "SELECT followed_user_id FROM user_relationships WHERE " \
+                   "user_id = :user_id"
+    Chirp.where(
+      "user_id IN (#{followed_ids}) OR user_id = :user_id", user_id: id
+    )
+  end
 end
