@@ -1,15 +1,22 @@
 <h1>Feed</h1>
 
-<%= render 'shared/chirp_form' %>
-
-<% if @feed.any? %>
-    <ul class="feed">
-        <li><%= render partial: 'shared/chirp', collection: @feed %></li>
-    </ul>
-<% else %>
-    <% if current_user.followed_users.count.positive? %>
-        <p>It looks like none of the people you've followed have chirped!</p>
-    <% else %>
-        <p>You need to go follow some people!</p>
-    <% end %>
-<% end %>
+<div class="row">
+    <div class="col-md-12">
+        <%= render 'shared/chirp_form' %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <% if @feed.any? %>
+            <ul class="feed list-group">
+                <%= render partial: 'shared/chirp', collection: @feed %>
+            </ul>
+        <% else %>
+            <% if current_user.followed_users.count.positive? %>
+                <p>It looks like none of the people you've followed have chirped!</p>
+            <% else %>
+                <p>You need to go follow some people!</p>
+            <% end %>
+        <% end %>
+    </div>
+</div>

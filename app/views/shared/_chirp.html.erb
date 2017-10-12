@@ -1,7 +1,7 @@
-<div class="chirp">
+<li class="chirp list-group-item">
   <span class="image">
       <%= link_to user_path(chirp.user) do %>
-          <%= gravatar_for(chirp.user) %>
+          <%= gravatar_for(chirp.user, size: 80) %>
       <% end %>
   </span>
   <span class="message"><%= chirp.message %></span>
@@ -14,4 +14,4 @@
                             data: { confirm: "You sure?" },
                             title: chirp.message %>
   <% end %>
-</div>
+</li>

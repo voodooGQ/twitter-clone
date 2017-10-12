@@ -24,7 +24,13 @@
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
                 <li><%= link_to "Log Out", logout_path %></li>
-                <li><%= link_to "Profile", current_user %></li>
+                <li>
+                    <%= link_to current_user do %>
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                    <% end %>
+                </li>
+
+
             <% else %>
                 <li><%= link_to "Sign Up", signup_path %></li>
                 <li><%= link_to "Log In", login_path %></li>
@@ -33,7 +39,7 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+    <div class="container page-container">
         <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>

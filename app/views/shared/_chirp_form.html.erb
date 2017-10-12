@@ -1,7 +1,23 @@
-<%= form_for(@chirp) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <%= f.text_area :message, placeholder: "Whatcha wanna chirp?..." %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-<% end %>
+<div class="row">
+    <div class="col-md-12">
+        <%= form_for(@chirp) do |f| %>
+            <div class="row">
+                <div class="col-md-12">
+                    <%= render 'shared/error_messages', object: f.object %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <%= f.text_area :message, placeholder: "Whatcha wanna chirp?...", class: "form-control" %>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <%= f.submit "Post", class: "btn btn-large btn-primary btn-block" %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
