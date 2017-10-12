@@ -1,5 +1,7 @@
 <h1>Feed</h1>
 
+<%= render 'shared/chirp_form' %>
+
 <% if @feed.any? %>
     <% @feed.each do |chirp| %>
         <p><%= chirp.message %></p>
