@@ -1,5 +1,9 @@
 <div class="chirp">
-  <span class="image"><%= gravatar_for(chirp.user) %></span>
+  <span class="image">
+      <%= link_to user_path(chirp.user) do %>
+          <%= gravatar_for(chirp.user) %>
+      <% end %>
+  </span>
   <span class="message"><%= chirp.message %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(chirp.created_at) %> ago.

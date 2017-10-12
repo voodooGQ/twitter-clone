@@ -2,9 +2,7 @@
 
 <% if @chirps.any? %>
     <ul class="chirps">
-        <% @chirps.each do |chirp| %>
-            <li><%= chirp.message %></li>
-        <% end %>
+        <li><%= render partial: "shared/chirp", collection: @chirps %></li>
     </ul>
 <% else %>
     <p><%= @user.email %> has no chirps to display</p>

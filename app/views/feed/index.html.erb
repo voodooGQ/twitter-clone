@@ -4,7 +4,7 @@
 
 <% if @feed.any? %>
     <ul class="feed">
-        <%= render partial: 'shared/chirp', collection: @feed %>
+        <li><%= render partial: 'shared/chirp', collection: @feed %></li>
     </ul>
 <% else %>
     <% if current_user.followed_users.count.positive? %>
