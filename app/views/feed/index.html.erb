@@ -3,9 +3,9 @@
 <%= render 'shared/chirp_form' %>
 
 <% if @feed.any? %>
-    <% @feed.each do |chirp| %>
-        <p><%= chirp.message %></p>
-    <% end %>
+    <ul class="feed">
+        <%= render partial: 'shared/chirp', collection: @feed %>
+    </ul>
 <% else %>
     <% if current_user.followed_users.count.positive? %>
         <p>It looks like none of the people you've followed have chirped!</p>
