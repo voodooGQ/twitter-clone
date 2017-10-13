@@ -55,4 +55,16 @@ class User < ApplicationRecord
       "user_id IN (#{followed_ids}) OR user_id = :user_id", user_id: id
     )
   end
+
+  def following?(other_user)
+    followed_relationships.find_by(followed_user_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    followed_relationships.create!(followed_user_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    followed_relationships.find_by(followed_user_id: other_user.id).destroy
+  end
 end

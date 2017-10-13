@@ -8,6 +8,15 @@
         <h1>@<%= @user.username %></h1>
     </div>
 </div>
+<% unless @user == current_user %>
+    <div class="row">
+        <div class="col-md-12 centered">
+            <div class="form-group">
+                <%= render partial: "follow_form" %>
+            </div>
+        </div>
+    </div>
+<% end %>
 <div class="row">
     <div class="col-md-12">
         <% if @chirps.any? %>
