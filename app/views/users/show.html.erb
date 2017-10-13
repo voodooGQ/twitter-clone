@@ -1,9 +1,21 @@
-<h1>Profile</h1>
-
-<% if @chirps.any? %>
-    <ul class="chirps">
-        <%= render partial: "shared/chirp", collection: @chirps %>
-    </ul>
-<% else %>
-    <p><%= @user.email %> has no chirps to display</p>
-<% end %>
+<div class="row">
+    <div class="col-md-12 centered">
+        <%= gravatar_for(@user, size: 200, centered: true) %>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 centered">
+        <h1>@<%= @user.username %></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <% if @chirps.any? %>
+            <ul class="chirps list-group">
+                <%= render partial: "shared/chirp", collection: @chirps %>
+            </ul>
+        <% else %>
+            <p><%= @user.email %> has no chirps to display</p>
+        <% end %>
+    </div>
+</div>

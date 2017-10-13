@@ -7,7 +7,7 @@ class ChirpsController < ApplicationController
     if @chirp.save
       flash[:success] = "Chirp created!"
     else
-      flash[:error] = "Uh oh, something went wrong, try again!"
+      flash[:danger] = "Uh oh, something went wrong, try again!"
     end
 
     redirect_to feed_url

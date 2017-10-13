@@ -1,17 +1,38 @@
 <li class="chirp list-group-item">
-  <span class="image">
-      <%= link_to user_path(chirp.user) do %>
-          <%= gravatar_for(chirp.user, size: 80) %>
-      <% end %>
-  </span>
-  <span class="message"><%= chirp.message %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(chirp.created_at) %> ago.
-  </span>
-  <% if chirp.user == current_user %>
-      <%= link_to "delete", chirp,
-                            method: :delete,
-                            data: { confirm: "You sure?" },
-                            title: chirp.message %>
-  <% end %>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-4 col-md-2">
+            <span class="image">
+                <%= link_to user_path(chirp.user) do %>
+                    <%= gravatar_for(chirp.user, size: 80) %>
+                <% end %>
+            </span>
+        </div>
+        <div class="col-xs-8 col-md-10">
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="lead message pull-right"><%= chirp.message %></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <small class="timestamp pull-right">
+                        Posted <%= time_ago_in_words(chirp.created_at) %> ago.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <% if chirp.user == current_user %>
+                <%= link_to "Delete", chirp,
+                                    method: :delete,
+                                    data: { confirm: "You sure?" },
+                                    title: chirp.message,
+                                    class: "btn btn-xs btn-danger pull-right" %>
+            <% end %>
+        </div>
+    </div>
+  </div>
 </li>
