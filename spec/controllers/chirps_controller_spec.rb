@@ -49,5 +49,32 @@ RSpec.describe ChirpsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    context "when the owner of the chirp is the current_user" do
+      before do
+        @chirp = create(:chirp, user: @user)
+        post :destroy, params: { id: @chirp.id }
+      end
+
+      it "deletes the chirp from the database" do
+        expect(Chirp.all.count).to eq(0)
+      end
+
+      it "sends a success flash notice" do
+        expect(controller).to set_flash[:success].to(
+          "Chirp deleted!"
+        )
+      end
+    end
+
+    context "when the owner of the chirp is not the current_user" do
+      before do
+        @chirp = create(:chirp)
+        post :destroy, params: { id: @chirp.id }
+      end
+
+      it "redirects the user to the root_url" do
+        expect(controller).to redirect_to(root_url)
+      end
+    end
   end
 end

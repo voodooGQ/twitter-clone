@@ -16,7 +16,7 @@ class ChirpsController < ApplicationController
   def destroy
     @chirp = Chirp.find(params[:id]).delete
     flash[:success] = "Chirp deleted!"
-    redirect_to feed_url
+    redirect_back(fallback_location: feed_url)
   end
 
   private
