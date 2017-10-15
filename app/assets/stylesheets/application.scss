@@ -16,3 +16,31 @@
 .site-container {
   padding-top: 70px
 }
+
+.page-container {
+  max-width: 768px;
+}
+
+.rounded {
+  border-radius: 10px;
+}
+
+.centered {
+  float: none;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.like-submit {
+  color: #666;
+  cursor: pointer;
+  font-size: 2em;
+  &.liked { color: #d9534f }
+}
+
+.list-group-item-padded {
+  margin-bottom: 20px;
+  &:last {
+    margin-bottom: 0;
+  }
+}

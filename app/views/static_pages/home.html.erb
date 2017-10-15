@@ -1,11 +1,20 @@
-<div class="jumbotron">
-    <h1>Welcome to Chirper</h1>
-    <p>Keep in touch with your friends in 141 characters or less! We're always a step above the competition!</p>
-    <p>
-        <%= link_to "Sign Up Now »", signup_path, { :class => "btn btn-lg btn-primary" } %>
-    </p>
-</div>
-<div class="container">
-    <h1 class="cover-heading">Chirper</h1>
-    <p class="lead">Lead</p>
+<% unless current_user %>
+    <div class="jumbotron">
+        <h1>Welcome to Chirper</h1>
+        <p>Keep in touch with your friends in 141 characters or less! We're always a step above the competition!</p>
+        <p>
+            <%= link_to "Sign Up Now »", signup_path, { :class => "btn btn-lg btn-primary" } %>
+        </p>
+    </div>
+<% end %>
+<div class="container page-container">
+    <% if current_user %>
+        <h1 class="centered"> DISCOVER NEW PEOPLE</h1>
+        <hr />
+    <% end %>
+    <% if @chirps.any? %>
+        <ul class="feed list-group">
+            <%= render partial: 'shared/chirp', collection: @chirps %>
+        </ul>
+    <% end %>
 </div>

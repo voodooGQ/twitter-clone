@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions
   resources :chirps
+  resources :likes
+  resources :user_relationships
 end

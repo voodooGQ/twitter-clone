@@ -6,8 +6,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    # No point showing empty chirps
+    @user   = User.find(params[:id])
+    @chirp  = current_user.chirps.build if current_user == @user
     @chirps = @user.chirps
   end
 

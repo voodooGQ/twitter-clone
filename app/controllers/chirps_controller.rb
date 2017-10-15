@@ -7,9 +7,15 @@ class ChirpsController < ApplicationController
     if @chirp.save
       flash[:success] = "Chirp created!"
     else
-      flash[:error] = "Uh oh, something went wrong, try again!"
+      flash[:danger] = "Uh oh, something went wrong, try again!"
     end
 
+    redirect_back(fallback_location: feed_url)
+  end
+
+  def destroy
+    @chirp = Chirp.find(params[:id]).delete
+    flash[:success] = "Chirp deleted!"
     redirect_to feed_url
   end
 
