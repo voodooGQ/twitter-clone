@@ -55,6 +55,7 @@ RSpec.describe UsersController, type: :controller do
     context "when valid parameters are passed" do
       let(:valid_user_params) do
         {
+          username: "foobar",
           email: "test@test.com",
           password: "123456",
           password_confirmation: "123456"
