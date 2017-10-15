@@ -24,3 +24,6 @@
 .env
 
 /coverage
+
+# The db file
+twitterclone_production
