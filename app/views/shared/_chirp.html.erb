@@ -24,7 +24,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="<%= "like_form_chirp_#{chirp.id}" %>">
+                <%= render partial: "chirps/like_form", :locals => {chirp: chirp} %>
+            </div>
+        </div>
+        <div class="col-md-6">
             <% if chirp.user == current_user %>
                 <%= link_to "Delete", chirp,
                                     method: :delete,

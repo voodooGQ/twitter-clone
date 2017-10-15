@@ -1,0 +1,7 @@
+<div class="like_form <%= "chirp_#{chirp.id}" %>">
+    <% if current_user.liked?(chirp) %>
+        <%= render partial: 'chirps/unlike', :locals => {chirp: chirp} %>
+    <% else %>
+        <%= render partial: 'chirps/like', :locals => {chirp: chirp} %>
+    <% end %>
+</div>

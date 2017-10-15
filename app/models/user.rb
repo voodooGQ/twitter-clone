@@ -20,31 +20,30 @@ class User < ApplicationRecord
 
   has_many :chirps
 
-  has_many(
-    :followed_relationships,
-    foreign_key: "user_id",
-    class_name: "UserRelationship",
-    dependent: :destroy
-  )
+  has_many :likes,
+           foreign_key: "user_id",
+           class_name: "Like",
+           dependent: :destroy
 
-  has_many(
-    :followed_users,
-    through: :followed_relationships,
-    source: :followed_user
-  )
+  has_many :liked_chirps, through: :likes, source: :chirp
 
-  has_many(
-    :follower_relationships,
-    foreign_key: "followed_user_id",
-    class_name: "UserRelationship",
-    dependent: :destroy
-  )
+  has_many :followed_relationships,
+           foreign_key: "user_id",
+           class_name: "UserRelationship",
+           dependent: :destroy
 
-  has_many(
-    :followers,
-    through: :follower_relationships,
-    source: :user
-  )
+  has_many :followed_users,
+           through: :followed_relationships,
+           source: :followed_user
+
+  has_many :follower_relationships,
+           foreign_key: "followed_user_id",
+           class_name: "UserRelationship",
+           dependent: :destroy
+
+  has_many :followers,
+           through: :follower_relationships,
+           source: :user
 
   before_save { self.email = email.downcase }
 
@@ -66,5 +65,17 @@ class User < ApplicationRecord
 
   def unfollow!(other_user)
     followed_relationships.find_by(followed_user_id: other_user.id).destroy
+  end
+
+  def liked?(chirp)
+    liked_chirps.find_by(id: chirp.id)
+  end
+
+  def like!(chirp)
+    likes.create!(chirp_id: chirp.id)
+  end
+
+  def unlike!(chirp)
+    likes.find_by(chirp_id: chirp.id).destroy
   end
 end

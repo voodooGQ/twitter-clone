@@ -1,0 +1,3 @@
+$(".like_form<%= ".chirp_#{@chirp.id}" %>").html(
+    "<%= escape_javascript(render(partial: 'chirps/like', :locals => {chirp: @chirp})) %>"
+)
