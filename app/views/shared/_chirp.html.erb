@@ -4,7 +4,7 @@
         <div class="col-xs-4 col-md-2">
             <span class="image">
                 <%= link_to user_path(chirp.user) do %>
-                    <%= gravatar_for(chirp.user, size: 80) %>
+                    <%= profile_image_for(chirp.user, size: 80) %>
                 <% end %>
             </span>
         </div>

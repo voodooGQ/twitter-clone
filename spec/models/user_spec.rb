@@ -85,25 +85,63 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "chirp_feed" do
+  describe "instance_methods" do
     before do
-      3.times do |i|
-        instance_variable_set("@user_#{i+1}", create(:user))
-      end
-
+      3.times { |i| instance_variable_set("@user_#{i+1}", create(:user)) }
       3.times do |c|
         create(:chirp, user: @user_2)
         create(:chirp, user: @user_3)
       end
-
       create(:chirp, user: @user_1)
-
       create(:user_relationship, user: @user_1, followed_user: @user_2)
       create(:user_relationship, user: @user_1, followed_user: @user_3)
+      create(:like, user: @user_1, chirp: @user_2.chirps.first)
     end
 
-    it "returns the correct number of chirps" do
-      expect(@user_1.chirp_feed.count).to eq(7)
+    describe "chirp_feed" do
+      it { expect(@user_1.chirp_feed.count).to eq(7) }
+    end
+
+    describe "following?" do
+      it { expect(@user_1.following?(@user_2)).to be_truthy }
+      it { expect(@user_2.following?(@user_1)).to be_falsey }
+    end
+
+    describe "follow!" do
+      it do
+        expect{ @user_2.follow!(@user_1) }.to change{
+          UserRelationship.all.count
+        }.by(1)
+      end
+    end
+
+    describe "unfollow!" do
+      it do
+        expect{ @user_1.unfollow!(@user_2) }.to change{
+          UserRelationship.all.count
+        }.by(-1)
+      end
+    end
+
+    describe "liked?" do
+      it { expect(@user_1.liked?(@user_2.chirps.first)).to be_truthy }
+      it { expect(@user_1.liked?(@user_3.chirps.last)).to be_falsey }
+    end
+
+    describe "like!" do
+      it do
+        expect{ @user_1.like!(@user_3.chirps.first) }.to change{
+          Like.all.count
+        }.by(1)
+      end
+    end
+
+    describe "unlike!" do
+      it do
+        expect{ @user_1.unlike!(@user_2.chirps.first) }.to change{
+          Like.all.count
+        }.by(-1)
+      end
     end
   end
 end
