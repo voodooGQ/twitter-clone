@@ -1,5 +1,5 @@
 <%= form_for(current_user.likes.find_by(chirp_id: chirp.id),
              html: { method: :delete },
              remote: true) do |f| %>
-  <span class="like-submit unlike glyphicon glyphicon-heart"></span>
+  <span class="like-submit liked glyphicon glyphicon-heart"></span>
 <% end %>

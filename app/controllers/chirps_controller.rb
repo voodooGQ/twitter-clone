@@ -10,7 +10,7 @@ class ChirpsController < ApplicationController
       flash[:danger] = "Uh oh, something went wrong, try again!"
     end
 
-    redirect_to feed_url
+    redirect_back(fallback_location: feed_url)
   end
 
   def destroy

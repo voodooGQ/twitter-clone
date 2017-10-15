@@ -24,8 +24,15 @@
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
                 <li>
+                    <%= link_to feed_url do %>
+                        <span class="glyphicon glyphicon-list"></span>
+                        Feed
+                    <% end %>
+                </li>
+                <li>
                     <%= link_to current_user do %>
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                        Profile
                     <% end %>
                 </li>
                 <li><%= link_to "Log Out", logout_path %></li>
@@ -37,7 +44,7 @@
         </div>
       </div>
     </nav>
-    <div class="container page-container">
+    <div class="container">
         <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
         <% end %>
