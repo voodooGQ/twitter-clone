@@ -12,7 +12,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <span class="lead message pull-right">
-                        <strong>@<%= chirp.user.username %></strong>: <%= chirp.message %>
+                        <%= link_to user_path(chirp.user) do %>
+                            <strong>@<%= chirp.user.username %></strong>
+                        <% end %>: <%= chirp.message %>
+
                     </span>
                 </div>
             </div>
@@ -26,12 +29,16 @@
         </div>
     </div>
     <% if current_user %>
-        <hr />
+        <% if current_user.following?(chirp.user) || chirp.user == current_user %>
+            <hr />
+        <% end %>
         <div class="row">
             <div class="col-xs-6">
-                <div class="<%= "like_form_chirp_#{chirp.id}" %>">
-                    <%= render partial: "chirps/like_form", :locals => {chirp: chirp} %>
-                </div>
+                <% if current_user.following?(chirp.user) %>
+                    <div class="<%= "like_form_chirp_#{chirp.id}" %>">
+                        <%= render partial: "chirps/like_form", :locals => {chirp: chirp} %>
+                    </div>
+                <% end %>
             </div>
             <div class="col-xs-6">
                 <% if chirp.user == current_user %>

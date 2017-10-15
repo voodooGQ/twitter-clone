@@ -7,45 +7,45 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 user_setup = [
-  ["lskywalker", "luke_skywalker.jpg"],
-  ["hsolo", "han_solo.jpg"],
-  ["lorgana", "leia_organa.jpg"],
-  ["chewie", "chewie.jpg"],
-  ["baddad", "darth_vader.jpg"],
-  ["bfett", "boba_fett.jpg"]
+  ["lorgana", "leia_organa.jpg", Faker::StarWars],
+  ["chewie", "chewie.jpg", Faker::StarWars],
+  ["baddad", "darth_vader.jpg", Faker::StarWars],
+  ["iamlordvoldemort", "tom_riddle.png", Faker::HarryPotter],
+  ["hpotter", "harry_potter.jpg", Faker::HarryPotter],
+  ["hgranger", "hermione_granger.jpg", Faker::HarryPotter],
+  ["bbaggins", "bilbo_baggins.jpg", Faker::Hobbit],
+  ["precious", "gollum.jpg", Faker::Hobbit],
+  ["hsimpson", "homer_simpson.jpg", Faker::Simpsons],
+  ["msimpson", "marge_simpson.jpg", Faker::Simpsons]
 ]
 
-users = user_setup.map do |u|
-  User.create(
-    username: u.first,
-    email: "#{u.first}@linuxacademy.com",
-    image_path: u.last,
+users = []
+chirps = []
+user_setup.map do |u|
+  users << obj = User.create(
+    username: u[0],
+    email: "#{u[0]}@linuxacademy.com",
+    image_path: u[1],
     password: "abcd1234"
   )
-end
-
-chirps = []
-users.each do |u|
-  # Make Relationships
-  users.each do |follow|
-    # Don't follow self
-    next if follow == u
-    # Randomly decide if we should follow or not
-    next if rand(0..1) == 0
-    UserRelationship.create(user: u, followed_user: follow)
-  end
 
   # Make Chirps
   15.times do
-    message = Faker::StarWars.quote
-    chirps << Chirp.new(message: message, user: u) if message.length <= 141
-    chirps.last.created_at = Date.today-rand(400)
+    method = obj.username == "chewie" ?  "wookie_sentence" : "quote"
+    message = u[2].send(method)
+    if message.length <= 141
+      chirps << Chirp.new(
+        message: message,
+        user: obj,
+        created_at: Date.today-rand(400)
+      )
+    end
     chirps.last.save!
   end
 end
 
+# Shuffle the chirps and make folks like them
 chirps.shuffle!.each(&:save!)
-
 chirps.each do |chirp|
   users.each do |user|
     # Don't like our own tweets
@@ -55,3 +55,16 @@ chirps.each do |chirp|
     Like.create(chirp: chirp, user_id: user.id)
   end
 end
+
+users.each do |u|
+  # Make Relationships
+  users.each do |follow|
+    # Don't follow self
+    next if follow == u
+    # Randomly decide if we should follow or not
+    next if rand(0..1) == 0
+    UserRelationship.create(user: u, followed_user: follow)
+  end
+end
+
+

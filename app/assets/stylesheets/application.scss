@@ -13,6 +13,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
 .site-container {
   padding-top: 70px
 }

@@ -1,6 +1,10 @@
 <% unless current_user %>
     <div class="jumbotron">
-        <h1>Welcome to Chirper</h1>
+        <h1><%= image_tag(
+                    asset_path("pinehead_chirper_small.png"),
+                    alt: "Chirper"
+                  ) %> Welcome to Chirper
+        </h1>
         <p>Keep in touch with your friends in 141 characters or less! We're always a step above the competition!</p>
         <p>
             <%= link_to "Sign Up Now »", signup_path, { :class => "btn btn-lg btn-primary" } %>
