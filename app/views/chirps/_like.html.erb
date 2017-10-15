@@ -1,4 +1,4 @@
 <%= form_for(current_user.likes.build(chirp_id: chirp.id), remote: true) do |f| %>
   <div><%= f.hidden_field :chirp_id %></div>
-  <%= f.submit "Like", class: "btn btn-large btn-primary" %>
+  <span class="like-submit like glyphicon glyphicon-heart"></span>
 <% end %>
