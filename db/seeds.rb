@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require "faker"
+
 user_setup = [
   ["lorgana", "leia_organa.jpg", Faker::StarWars],
   ["chewie", "chewie.jpg", Faker::StarWars],
