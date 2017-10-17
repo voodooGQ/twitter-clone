@@ -134,7 +134,7 @@
 - Start Puma
 ```
     cd ~/twitter-clone
-    puma -p 3000 -d
+    RAILS_ENV=production puma -p 3000 -d
 ```
 - Verify it's active by visiting the IP address of the ec2 instance in your
   browser

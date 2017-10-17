@@ -45,7 +45,7 @@ class User < ApplicationRecord
            through: :follower_relationships,
            source: :user
 
-  before_save { self.email = email.downcase }
+  before_save { self.email = email.downcase.strip }
 
   def chirp_feed
     followed_ids = "SELECT followed_user_id FROM user_relationships WHERE " \
