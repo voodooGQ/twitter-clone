@@ -7,7 +7,7 @@
 ```
     ssh -i ~/path/to/my.pem ec2-user@YOUR.IP.ADDR
 ```
-- Update the AMI - #DIDN'T NEED TO DO THIS
+- Update the AMI
 ```
     sudo yum -y update
 ```
