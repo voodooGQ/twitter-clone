@@ -73,7 +73,6 @@
 ```
    RAILS_ENV=production rake assets:precompile
 ```
-# START NGINX
 - Open up the home directory so nginx can have access
 ```
     cd /home
