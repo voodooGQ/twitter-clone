@@ -94,7 +94,7 @@
 - Update the `virtual.conf` file
 ```
     sudo vim conf.d/virtual.conf
-    dg
+    dG
     i
 
     upstream my_app {
