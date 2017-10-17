@@ -16,15 +16,12 @@
 //= require bootstrap
 //= require_tree .
 
-var ready = function() {
-    $('body').on('click', '.like-submit', function(event){
+document.addEventListener("turbolinks:load", function() {
+  $('body').on('click', '.like-submit', function(event){
         event.preventDefault();
         $target = $(event.target);
         form = $target.parent('form');
         form.submit();
     });
-};
-
-$(document).ready(ready);
-$(document).on('page:change', ready);
+});
 
