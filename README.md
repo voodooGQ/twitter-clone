@@ -7,6 +7,10 @@
 ```
     ssh -i ~/path/to/my.pem ec2-user@YOUR.IP.ADDR
 ```
+- Update the AMI - #DIDN'T NEED TO DO THIS
+```
+    sudo yum -y update
+```
 - Install Deps -
 ```
     sudo yum install -y git-core zlib zlib-devel gcc-c++ patch readline readline-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison curl sqlite-devel
