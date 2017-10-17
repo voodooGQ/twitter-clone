@@ -8,6 +8,8 @@
 #  password_digest :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  username        :string           not null
+#  image_path      :string
 #
 
 require "rails_helper"
